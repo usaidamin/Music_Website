@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Nation - Your Ultimate Rock Destination</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Header Styles */
+    .header1 {
+        text-align: center;
+        height: 400px;
+        padding: 100px 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .header1 h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: #1DB954;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-family: 'Rock Salt', cursive;
+    }
+
+    .header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Featured Section */
+    .section-title {
+        font-size: 2.5rem;
+        margin: 40px 0 20px;
+        color: #1DB954;
+        border-bottom: 2px solid #1DB954;
+        padding-bottom: 10px;
+        font-family: 'Rock Salt', cursive;
+    }
+
+    .featured-artists {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .artist-card {
+        background: #1e1e1e;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .artist-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .artist-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .artist-info {
+        padding: 20px;
+    }
+
+    .artist-name {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #1DB954;
+    }
+
+    .artist-genre {
+        color: #aaa;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        display: inline-block;
+        background: #1DB954;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .btn:hover {
+        background: #26d162;
+    }
+
+    /* New Releases */
+    .albums {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+        margin-bottom: 50px;
+    }
+
+    .album {
+        background: #1e1e1e;
+        padding: 15px;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .album:hover {
+        transform: scale(1.05);
+    }
+
+    .album-cover {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .album-title {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+
+    .album-artist {
+        color: #aaa;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    /* Events */
+    .events {
+        margin-bottom: 50px;
+    }
+
+    .event {
+        background: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .event-date {
+        background: #1DB954;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-align: center;
+        min-width: 100px;
+    }
+
+    .event-date .day {
+        font-size: 1.8rem;
+        font-weight: bold;
+        display: block;
+    }
+
+    .event-date .month {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+    }
+
+    .event-info {
+        flex: 1;
+        padding: 0 20px;
+    }
+
+    .event-title {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+
+    .event-location {
+        color: #aaa;
+    }
+
+    .event-price {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #1DB954;
+    }
+
+    /* Music Player */
+    .player-container {
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 50px;
+    }
+
+    .player {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .player-controls {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+    .control-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 10px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .control-btn:hover {
+        color: #1DB954;
+    }
+
+    .play-btn {
+        font-size: 2rem;
+    }
+
+    .song-info {
+        flex: 1;
+    }
+
+    .song-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .song-artist {
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    .progress-container {
+        width: 100%;
+        height: 5px;
+        background: #333;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .progress {
+        height: 100%;
+        background: #1DB954;
+        border-radius: 5px;
+        width: 0%;
+    }
+
+    .time-info {
+        display: flex;
+        justify-content: space-between;
+        color: #aaa;
+        font-size: 0.8rem;
+    }
+
+    .playlist {
+        list-style: none;
+    }
+
+    .playlist-item {
+        padding: 10px;
+        border-bottom: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .playlist-item:hover {
+        background: #2a2a2a;
+    }
+
+    .playlist-item.active {
+        color: #1DB954;
+    }
+
+    .song-duration {
+        color: #aaa;
+    }
+
+    /* Newsletter */
+    .newsletter {
+        background: #1e1e1e;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .newsletter h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #1DB954;
+    }
+
+    .newsletter p {
+        margin-bottom: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .newsletter-form {
+        display: flex;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        font-size: 1rem;
+    }
+
+    .newsletter-btn {
+        padding: 12px 20px;
+        background: #1DB954;
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .newsletter-btn:hover {
+        background: #26d162;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 2.5rem;
+        }
+
+        .event {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .event-date {
+            margin-bottom: 15px;
+        }
+
+        .event-info {
+            padding: 0;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .newsletter-input {
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-btn {
+            border-radius: 5px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header id="navbar">
+        
+    </header>
+    <div class="container">
+        <!-- Header -->
+        <header class="header1">
+            <h1>ROCK NATION</h1>
+            <p>Your ultimate destination for everything rock. Discover new music, explore legendary artists, and stay updated with the latest rock events worldwide.</p>
+        </header>
+
+        <!-- Featured Artists -->
+        <h2 class="section-title">Featured Artists</h2>
+        <div class="featured-artists">
+            <div class="artist-card">
+                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Artist" class="artist-img">
+                <div class="artist-info">
+                    <h3 class="artist-name">The Dark Storms</h3>
+                    <p class="artist-genre">Alternative Rock / Grunge</p>
+                    <a href="#" class="btn">View Profile</a>
+                </div>
+            </div>
+            <div class="artist-card">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Artist" class="artist-img">
+                <div class="artist-info">
+                    <h3 class="artist-name">Electric Rebellion</h3>
+                    <p class="artist-genre">Hard Rock / Metal</p>
+                    <a href="#" class="btn">View Profile</a>
+                </div>
+            </div>
+            <div class="artist-card">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Artist" class="artist-img">
+                <div class="artist-info">
+                    <h3 class="artist-name">Midnight Riot</h3>
+                    <p class="artist-genre">Punk Rock</p>
+                    <a href="#" class="btn">View Profile</a>
+                </div>
+            </div>
+            <div class="artist-card">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Artist" class="artist-img">
+                <div class="artist-info">
+                    <h3 class="artist-name">Velvet Thunder</h3>
+                    <p class="artist-genre">Classic Rock</p>
+                    <a href="#" class="btn">View Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Releases -->
+        <h2 class="section-title">New Releases</h2>
+        <div class="albums">
+            <div class="album">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Album Cover" class="album-cover">
+                <h4 class="album-title">Echoes in the Dark</h4>
+                <p class="album-artist">The Dark Storms</p>
+                <a href="#" class="btn">Listen Now</a>
+            </div>
+            <div class="album">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Album Cover" class="album-cover">
+                <h4 class="album-title">Riot Control</h4>
+                <p class="album-artist">Electric Rebellion</p>
+                <a href="#" class="btn">Listen Now</a>
+            </div>
+            <div class="album">
+                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Album Cover" class="album-cover">
+                <h4 class="album-title">No Rules</h4>
+                <p class="album-artist">Midnight Riot</p>
+                <a href="#" class="btn">Listen Now</a>
+            </div>
+            <div class="album">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Album Cover" class="album-cover">
+                <h4 class="album-title">Retrograde</h4>
+                <p class="album-artist">Velvet Thunder</p>
+                <a href="#" class="btn">Listen Now</a>
+            </div>
+            <div class="album">
+                <img src="https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Album Cover" class="album-cover">
+                <h4 class="album-title">Blackout</h4>
+                <p class="album-artist">Neon Skies</p>
+                <a href="#" class="btn">Listen Now</a>
+            </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="events">
+            <div class="event">
+                <div class="event-date">
+                    <span class="day">15</span>
+                    <span class="month">Jun</span>
+                </div>
+                <div class="event-info">
+                    <h3 class="event-title">Rock Fest 2023</h3>
+                    <p class="event-location">Madison Square Garden, New York</p>
+                </div>
+                <div class="event-price">$75+</div>
+                <a href="#" class="btn">Get Tickets</a>
+            </div>
+            <div class="event">
+                <div class="event-date">
+                    <span class="day">22</span>
+                    <span class="month">Jul</span>
+                </div>
+                <div class="event-info">
+                    <h3 class="event-title">Electric Rebellion World Tour</h3>
+                    <p class="event-location">Staples Center, Los Angeles</p>
+                </div>
+                <div class="event-price">$65+</div>
+                <a href="#" class="btn">Get Tickets</a>
+            </div>
+            <div class="event">
+                <div class="event-date">
+                    <span class="day">05</span>
+                    <span class="month">Aug</span>
+                </div>
+                <div class="event-info">
+                    <h3 class="event-title">Midnight Riot Album Launch</h3>
+                    <p class="event-location">The Fillmore, San Francisco</p>
+                </div>
+                <div class="event-price">$45+</div>
+                <a href="#" class="btn">Get Tickets</a>
+            </div>
+        </div>
+
+        <!-- Music Player -->
+        <h2 class="section-title">Featured Playlist</h2>
+        <div class="player-container">
+            <div class="player">
+                <div class="player-controls">
+                    <button class="control-btn"><i class="fas fa-step-backward"></i></button>
+                    <button class="control-btn play-btn"><i class="fas fa-play"></i></button>
+                    <button class="control-btn"><i class="fas fa-step-forward"></i></button>
+                </div>
+                <div class="song-info">
+                    <h4 class="song-title">Not Playing</h4>
+                    <p class="song-artist">Select a song</p>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="time-info">
+                <span class="current-time">0:00</span>
+                <span class="duration">0:00</span>
+            </div>
+            <ul class="playlist" id="playlist">
+                <li class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+                    <div>
+                        <span class="song-name">Thunder Road</span>
+                        <span class="song-artist">The Dark Storms</span>
+                    </div>
+                    <span class="song-duration">3:45</span>
+                </li>
+                <li class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+                    <div>
+                        <span class="song-name">Rebel Yell</span>
+                        <span class="song-artist">Electric Rebellion</span>
+                    </div>
+                    <span class="song-duration">4:12</span>
+                </li>
+                <li class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
+                    <div>
+                        <span class="song-name">No Surrender</span>
+                        <span class="song-artist">Midnight Riot</span>
+                    </div>
+                    <span class="song-duration">3:28</span>
+                </li>
+                <li class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3">
+                    <div>
+                        <span class="song-name">Retrograde</span>
+                        <span class="song-artist">Velvet Thunder</span>
+                    </div>
+                    <span class="song-duration">5:01</span>
+                </li>
+                <li class="playlist-item" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3">
+                    <div>
+                        <span class="song-name">Blackout</span>
+                        <span class="song-artist">Neon Skies</span>
+                    </div>
+                    <span class="song-duration">4:33</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter to get the latest news about rock music, exclusive interviews, concert announcements, and more delivered straight to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-center text-lg-start" id="footer">
+    
+    </footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+<script src="rock.js"></script>
+<script src="script.js"></script>
+</html>
